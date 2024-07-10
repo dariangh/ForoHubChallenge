@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public record DatosListarTopico(
@@ -14,7 +15,7 @@ public record DatosListarTopico(
         String titulo,
 
         String mensaje,
-        Date fechaCreacion,
+        LocalDateTime fechaCreacion,
 
         boolean status,
 

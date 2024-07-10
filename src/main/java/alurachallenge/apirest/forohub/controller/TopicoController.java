@@ -31,22 +31,26 @@ public class TopicoController{
     private UsuarioRepository usuarioRepository;
     @Autowired
     private TopicoRepository topicoRepository;
+    @Autowired
+    private TopicoService topicoService;
 
 
         @PostMapping
-        public ResponseEntity<DatosRespuestaTopico> newTopico(@RequestBody @Valid DatosRegistradoTopico datosRegistradoTopico, UriComponentsBuilder uriComponentsBuilder){
+        public ResponseEntity newTopico(@RequestBody @Valid DatosRegistradoTopico datosRegistradoTopico, UriComponentsBuilder uriComponentsBuilder){
 
-            Usuario usuario = usuarioRepository.findById(datosRegistradoTopico.idUsuario())
-                    .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
-            Curso curso = cursoRepository.findById(datosRegistradoTopico.idCurso())
-                    .orElseThrow(() -> new IllegalArgumentException("curso no encontrado"));
-           Topico topico= topicoRepository.save(new Topico(datosRegistradoTopico, usuario, curso));
-            DatosRespuestaTopico datosRspuestaTopico =
-                    new DatosRespuestaTopico((topico.getId()),
-                    topico.getTitulo(),topico.getMensaje(), topico.getFechaCreacion(),topico.isStatus(),topico.getUsuario(),
-                    topico.getCurso());
-            URI url=uriComponentsBuilder.path("topicos/{id}").buildAndExpand(topico.getId()).toUri();
-            return  ResponseEntity.created(url).body(datosRspuestaTopico);
+            var response=topicoService.publicarTopico(datosRegistradoTopico);
+            return ResponseEntity.ok(response);
+//            Usuario usuario = usuarioRepository.findById(datosRegistradoTopico.idUsuario())
+//                    .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+//            Curso curso = cursoRepository.findById(datosRegistradoTopico.idCurso())
+//                    .orElseThrow(() -> new IllegalArgumentException("curso no encontrado"));
+//           Topico topico= topicoRepository.save(new Topico(datosRegistradoTopico, usuario, curso));
+//            DatosRespuestaTopico datosRspuestaTopico =
+//                    new DatosRespuestaTopico((topico.getId()),
+//                    topico.getTitulo(),topico.getMensaje(), topico.getFechaCreacion(),topico.isStatus(),topico.getUsuario(),
+//                    topico.getCurso());
+//            URI url=uriComponentsBuilder.path("topicos/{id}").buildAndExpand(topico.getId()).toUri();
+//            return  ResponseEntity.created(url).body(datosRspuestaTopico);
         }
     @GetMapping
     public ResponseEntity<Page<DatosListarTopico>> listarTopico(@PageableDefault(page = 0, size = 10) Pageable paginacion) {

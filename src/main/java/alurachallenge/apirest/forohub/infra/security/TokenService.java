@@ -36,6 +36,7 @@ public class TokenService {
         }
         DecodedJWT verifier = null;
         try {
+            System.out.println("Entro al try");
             Algorithm algorithm = Algorithm.HMAC256(apiSecret); // validando firma
             verifier = JWT.require(algorithm)
                     .withIssuer("auth-service")

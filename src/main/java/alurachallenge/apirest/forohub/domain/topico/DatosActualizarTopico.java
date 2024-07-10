@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public record DatosActualizarTopico(
@@ -15,8 +16,8 @@ public record DatosActualizarTopico(
         @NotBlank
         String mensaje,
         @NotNull
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-        Date fechaCreacion,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
+        LocalDateTime fechaCreacion,
         @NotNull
         boolean status,
         @NotNull

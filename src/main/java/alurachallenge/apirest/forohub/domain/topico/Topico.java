@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class Topico {
     private Long id;
     private String titulo;
     private String mensaje;
-    private Date fechaCreacion;
+
+    private LocalDateTime fechaCreacion;
     private boolean status;
     @ManyToOne
     @JoinColumn(name="usuario_id")
@@ -52,12 +54,35 @@ public class Topico {
     }
 
     public void actualizarInformacion(DatosActualizarTopico datosActualizarTopico) {
-        this.titulo= datosActualizarTopico.titulo();
-        this.mensaje = datosActualizarTopico.mensaje();
-        this.fechaCreacion=datosActualizarTopico.fechaCreacion();
-        this.usuario=usuario;
-        this.curso=curso;
-        this.status= datosActualizarTopico.status();
+        if(datosActualizarTopico.titulo()!=null){
+            this.titulo= datosActualizarTopico.titulo();
+
+        }
+        if(datosActualizarTopico.mensaje()!=null){
+            this.mensaje = datosActualizarTopico.mensaje();
+
+
+        }
+        if(datosActualizarTopico.fechaCreacion()!=null){
+            this.fechaCreacion=datosActualizarTopico.fechaCreacion();
+
+        }
+        if(datosActualizarTopico.idUsuario()!=null){
+            this.usuario=usuario;
+
+        }
+        if(datosActualizarTopico.idCurso()!=null){
+            this.curso=curso;
+
+        }
+        if(!datosActualizarTopico.status()){
+            this.status= datosActualizarTopico.status();
+
+        }
+
+
+
+
     }
 
     public void desactivaTopico() {
