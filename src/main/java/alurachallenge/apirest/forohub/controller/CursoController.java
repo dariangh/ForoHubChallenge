@@ -8,6 +8,8 @@ import alurachallenge.apirest.forohub.domain.perfil.DatosListaPerfil;
 import alurachallenge.apirest.forohub.domain.perfil.DatosPerfil;
 import alurachallenge.apirest.forohub.domain.perfil.Perfil;
 import alurachallenge.apirest.forohub.domain.perfil.PerfilRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/curso")
+@SecurityRequirement(name = "bearer-key")
 public class CursoController {
     @Autowired
     private CursoRepository cursoRepository;

@@ -10,6 +10,7 @@ import alurachallenge.apirest.forohub.domain.usuario.DatosListaUsuario;
 import alurachallenge.apirest.forohub.domain.usuario.DatosRegistroUsuario;
 import alurachallenge.apirest.forohub.domain.usuario.Usuario;
 import alurachallenge.apirest.forohub.domain.usuario.UsuarioRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/topico")
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController{
     @Autowired
     private CursoRepository cursoRepository;

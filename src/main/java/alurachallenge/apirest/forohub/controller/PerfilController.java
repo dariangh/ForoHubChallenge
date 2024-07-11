@@ -1,6 +1,7 @@
 package alurachallenge.apirest.forohub.controller;
 
 import alurachallenge.apirest.forohub.domain.perfil.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/perfil")
+@SecurityRequirement(name = "bearer-key")
 public class PerfilController {
     @Autowired
     private PerfilRepository perfilRepository;
