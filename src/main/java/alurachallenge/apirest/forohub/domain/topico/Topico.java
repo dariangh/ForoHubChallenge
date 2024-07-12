@@ -32,14 +32,14 @@ public class Topico {
     private boolean status;
     @ManyToOne
     @JoinColumn(name="usuario_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Usuario usuario;//usuario tabla
     @ManyToOne
     @JoinColumn(name="curso_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Curso curso;//curso tabla
     @OneToMany(mappedBy = "topico")
-    @JsonManagedReference
+    @JsonBackReference
     private List<Respuesta> respuesta;
 
     public Topico(DatosRegistradoTopico datosRegistradoTopico, Usuario usuario, Curso curso) {

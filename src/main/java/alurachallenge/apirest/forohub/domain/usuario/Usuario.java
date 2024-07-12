@@ -4,6 +4,7 @@ import alurachallenge.apirest.forohub.domain.perfil.Perfil;
 import alurachallenge.apirest.forohub.domain.respuesta.Respuesta;
 import alurachallenge.apirest.forohub.domain.topico.Topico;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class Usuario implements UserDetails {
     private Long id;
     private String nombre;
     private String correoElectronico;
+    @JsonIgnore
     private String contrasena;
     @ManyToOne
     @JoinColumn(name="perfil_id")
@@ -55,11 +57,13 @@ public class Usuario implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return contrasena;
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return correoElectronico;
     }
